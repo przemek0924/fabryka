@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 14 Cze 2018, 17:50
+-- Czas generowania: 15 Cze 2018, 00:20
 -- Wersja serwera: 10.1.25-MariaDB
 -- Wersja PHP: 5.6.31
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `ewidencja` (
-  `ID_EWID` decimal(10,0) NOT NULL,
+  `ID_EWID` int(11) NOT NULL,
   `ID_MASZYNY` varchar(8) DEFAULT NULL,
-  `ID_PRACOWNIKA` decimal(10,0) DEFAULT NULL
+  `ID_PRACOWNIKA` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -39,14 +39,14 @@ CREATE TABLE `ewidencja` (
 --
 
 INSERT INTO `ewidencja` (`ID_EWID`, `ID_MASZYNY`, `ID_PRACOWNIKA`) VALUES
-('1', 'M0001', '1'),
-('2', 'M0001', '2'),
-('3', 'M0001', '3'),
-('4', 'M0002', '4'),
-('5', 'M0003', '4'),
-('6', 'M0004', '2'),
-('7', 'M0005', '2'),
-('8', 'M0005', '3');
+(1, 'M0001', 1),
+(2, 'M0001', 2),
+(3, 'M0001', 3),
+(4, 'M0002', 4),
+(5, 'M0003', 4),
+(6, 'M0004', 2),
+(7, 'M0005', 2),
+(8, 'M0005', 3);
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,7 @@ INSERT INTO `maszyna` (`NAZWA`, `NR_EWIDENCYJNY`, `DATA_URUCHOMIENIA`, `NAZWA_HA
 --
 
 CREATE TABLE `operator` (
-  `ID_OP` decimal(10,0) NOT NULL,
+  `ID_OP` int(11) NOT NULL,
   `NAZWISKO` varchar(20) DEFAULT NULL,
   `IMIE` varchar(20) DEFAULT NULL,
   `PLACA` decimal(6,2) DEFAULT NULL,
@@ -114,10 +114,10 @@ CREATE TABLE `operator` (
 --
 
 INSERT INTO `operator` (`ID_OP`, `NAZWISKO`, `IMIE`, `PLACA`, `DATA_ZATRUDNIENIA`) VALUES
-('1', 'Kowalski', 'Jan', '1500.00', '2016-12-12'),
-('2', 'Frankowski', 'Krzysztof', '1200.00', '2016-12-20'),
-('3', 'Zawadzki', 'Piotr', '1300.00', '2016-12-21'),
-('4', 'Sowa', 'Zdzislaw', '1400.00', '2016-12-22');
+(1, 'Kowalski', 'Jan', '1500.00', '2016-12-12'),
+(2, 'Frankowski', 'Krzysztof', '1200.00', '2016-12-20'),
+(3, 'Zawadzki', 'Piotr', '1300.00', '2016-12-21'),
+(4, 'Sowa', 'Zdzislaw', '1400.00', '2016-12-22');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -151,6 +151,20 @@ ALTER TABLE `operator`
   ADD PRIMARY KEY (`ID_OP`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT dla tabeli `ewidencja`
+--
+ALTER TABLE `ewidencja`
+  MODIFY `ID_EWID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT dla tabeli `operator`
+--
+ALTER TABLE `operator`
+  MODIFY `ID_OP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- Ograniczenia dla zrzutów tabel
 --
 
@@ -158,15 +172,14 @@ ALTER TABLE `operator`
 -- Ograniczenia dla tabeli `ewidencja`
 --
 ALTER TABLE `ewidencja`
-  ADD CONSTRAINT `ewidencja_ibfk_1` FOREIGN KEY (`ID_PRACOWNIKA`) REFERENCES `operator` (`ID_OP`),
-  ADD CONSTRAINT `ewidencja_ibfk_2` FOREIGN KEY (`ID_MASZYNY`) REFERENCES `maszyna` (`NR_EWIDENCYJNY`);
+  ADD CONSTRAINT `ewidencja_ibfk_1` FOREIGN KEY (`ID_PRACOWNIKA`) REFERENCES `operator` (`ID_OP`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ewidencja_ibfk_2` FOREIGN KEY (`ID_MASZYNY`) REFERENCES `maszyna` (`NR_EWIDENCYJNY`) ON DELETE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `maszyna`
 --
 ALTER TABLE `maszyna`
-  ADD CONSTRAINT `maszyna_ibfk_1` FOREIGN KEY (`NAZWA_HALI`) REFERENCES `hala` (`NAZWA`),
-  ADD CONSTRAINT `maszyna_ibfk_2` FOREIGN KEY (`NAZWA_HALI`) REFERENCES `hala` (`NAZWA`);
+  ADD CONSTRAINT `maszyna_ibfk_1` FOREIGN KEY (`NAZWA_HALI`) REFERENCES `hala` (`NAZWA`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
