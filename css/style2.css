@@ -1,0 +1,24 @@
+#baner
+{
+	background-image: url("../css/baner.jpg");
+	text-align: right;
+	height: 100px;
+}
+
+#panel_lewy
+{
+	background-color: #98fb98;
+	padding: 30px;
+	width: 20%;
+	height: 500px;
+	float: left;
+}
+
+#panel_prawy
+{
+	padding-left: 30px;
+	background-color: #a2cd5a;
+	width: 80%;
+	height: 500px;
+	float: left;
+}
