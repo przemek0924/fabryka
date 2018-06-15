@@ -1,5 +1,5 @@
 <?php
-$nr_ew = $_POST['nr_ewidencyjny'];
+$id_op = $_POST['id_op'];
 $con = mysqli_connect('localhost', 'root', '', 'fabryka');
 mysqli_select_db($con,'fabryka');
 
@@ -39,15 +39,15 @@ mysqli_select_db($con,'fabryka');
 </div>
 <div id="panel_lewy">
 <a href="../menu.html">Powrót do Menu</a><br>
-<a href="usuw_maszyna_form.php">Usuniecie maszyny</a><br>
+<a href="usuw_oper_form.php">Usuniecie operatora</a><br>
 </div>
 <div id="panel_prawy">
 <body>
 		<?php
-$zap2=mysqli_query($con,"Delete from maszyna where nr_ewidencyjny='$nr_ew'");
+$zap2=mysqli_query($con,"Delete from operator where id_op='$id_op'");
 
 	if ($zap2)
-			echo 'Maszyna została usunięta poprawnie';
+			echo 'Operator został usunięty poprawnie';
 	else
 			echo 'Error';
 

@@ -1,8 +1,8 @@
 <?php
-$nazwa = $_POST['nazwa'];
-$nr_ew = $_POST['nr_ewidencyjny'];
-$dat_ur = $_POST['data_uruchomienia'];
-$nawz_ha = $_POST['nazwa_hali'];
+$nazwisko = $_POST['nazwisko'];
+$imie = $_POST['imie'];
+$placa = $_POST['placa'];
+$data_zatr = $_POST['data_zatrudnienia'];
 
 $con = mysqli_connect('localhost', 'root', '', 'fabryka');
 mysqli_select_db($con,'fabryka');
@@ -44,14 +44,14 @@ mysqli_select_db($con,'fabryka');
 </div>
 <div id="panel_lewy">
 <a href="../menu.html">Powrót do Menu</a><br>
-<a href="dod_maszyna_form.php">Dodanie maszyny</a><br>
+<a href="dod_oper_form.php">Dodanie operatora</a><br>
 </div>
 <div id="panel_prawy">
 <body>
 		<?php
-$zap2=mysqli_query($con,"INSERT INTO maszyna (nazwa, nr_ewidencyjny, data_uruchomienia, nazwa_hali) VALUES ('".$nazwa."','".$nr_ew."','".$dat_ur."','".$nawz_ha."')");
+$zap2=mysqli_query($con,"INSERT INTO operator (nazwisko, imie, placa, data_zatrudnienia) VALUES ('".$nazwisko."','".$imie."','".$placa."','".$data_zatr."')");
 	if ($zap2)
-			echo 'Maszyna została dodana poprawnie';
+			echo 'Operator został dodany poprawnie';
 	else
 			echo "Error";
 ?>
