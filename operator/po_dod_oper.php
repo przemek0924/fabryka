@@ -4,8 +4,7 @@ $imie = $_POST['imie'];
 $placa = $_POST['placa'];
 $data_zatr = $_POST['data_zatrudnienia'];
 
-$con = mysqli_connect('localhost', 'root', '', 'fabryka');
-mysqli_select_db($con,'fabryka');
+include("../db.php");
 
 
  ?>
@@ -26,7 +25,7 @@ mysqli_select_db($con,'fabryka');
 	background-color: #98fb98;
 	padding: 30px;
 	width: 20%;
-	height: 500px;
+	height: 100vh;
 	float: left;
 }
 
@@ -35,7 +34,7 @@ mysqli_select_db($con,'fabryka');
 	padding: 30px;
 	background-color: #a2cd5a;
 	width: 80%;
-	height: 500px;
+	height: 100vh;
 	float: left;
 }
 </style>
@@ -43,7 +42,7 @@ mysqli_select_db($con,'fabryka');
 <div id="baner">
 </div>
 <div id="panel_lewy">
-<a href="../menu.html">Powrót do Menu</a><br>
+<a href="../index.html">Powrót do Menu</a><br>
 <a href="dod_oper_form.php">Dodanie operatora</a><br>
 </div>
 <div id="panel_prawy">
@@ -54,6 +53,8 @@ $zap2=mysqli_query($con,"INSERT INTO operator (nazwisko, imie, placa, data_zatru
 			echo 'Operator został dodany poprawnie';
 	else
 			echo "Error";
+		
+mysqli_close($con);
 ?>
 <br>
 </div>

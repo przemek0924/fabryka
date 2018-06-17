@@ -1,5 +1,6 @@
 <?php
-$nr_ew = $_POST['nr_ewidencyjny'];
+$nr_ew = $_POST['id_maszyny'];
+$id_op = $_POST['id_pracownika'];
 include("../db.php");
 
  ?>
@@ -38,18 +39,17 @@ include("../db.php");
 </div>
 <div id="panel_lewy">
 <a href="../index.html">Powrót do Menu</a><br>
-<a href="usuw_maszyna_form.php">Usuniecie maszyny</a><br>
+<a href="usuw_ewid_form.php">Usuniecie ewidencji</a><br>
 </div>
 <div id="panel_prawy">
 <body>
 		<?php
-$zap2=mysqli_query($con,"Delete from maszyna where nr_ewidencyjny='$nr_ew'");
+$zap2=mysqli_query($con,"Delete from ewidencja where id_maszyny='$nr_ew' and id_pracownika='$id_op'");
 
 	if ($zap2)
-			echo 'Maszyna została usunięta poprawnie';
+			echo 'ewidencja została usunięta poprawnie';
 	else
 			echo 'Error';
-
 mysqli_close($con);
 ?>
 <br>

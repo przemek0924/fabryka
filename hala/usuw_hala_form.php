@@ -1,7 +1,6 @@
 <?php
 
-$con = mysqli_connect('localhost', 'root', '', 'fabryka');
-mysqli_select_db($con,'fabryka');
+include("../db.php");
 $zap1 = mysqli_query ($con,"select nazwa, adres from hala");
 
  ?>
@@ -23,7 +22,7 @@ $zap1 = mysqli_query ($con,"select nazwa, adres from hala");
 	background-color: #98fb98;
 	padding: 30px;
 	width: 20%;
-	height: 500px;
+	height: 100vh;
 	float: left;
 }
 
@@ -32,7 +31,7 @@ $zap1 = mysqli_query ($con,"select nazwa, adres from hala");
 	padding-left: 30px;
 	background-color: #a2cd5a;
 	width: 80%;
-	height: 500px;
+	height: 100vh;
 	float: left;
 }
 </style>
@@ -40,7 +39,7 @@ $zap1 = mysqli_query ($con,"select nazwa, adres from hala");
 <div id="baner">
 </div>
 <div id="panel_lewy">
-<a href="../menu.html">Powrót do Menu</a><br>
+<a href="../index.html">Powrót do Menu</a><br>
 </div>
 <div id="panel_prawy">
 
